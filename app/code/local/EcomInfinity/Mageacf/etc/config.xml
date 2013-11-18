@@ -32,9 +32,12 @@
             <mageacf_mysql4>
                 <class>EcomInfinity_Mageacf_Model_Mysql4</class>
                 <entities>
-                    <mageacf>
-                        <table>mageacf</table>
-                    </mageacf>
+                    <ei_colorgroup>
+                        <table>ei_colorgroup</table>
+                    </ei_colorgroup>
+                    <ei_colorattr>
+                        <table>ei_colorattr</table>
+                    </ei_colorattr>
                 </entities>
             </mageacf_mysql4>
         </models>

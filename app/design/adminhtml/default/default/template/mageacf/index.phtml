@@ -1,1 +1,83 @@
-abc
+<?php
+    $_acfs = $this->getAllACFs();
+    $_colors = $this->getAllColors();
+    $_stores = $this->getAllStores();
+?>
+
+<h2><?php echo $this->__('Color Group Management');?></h2>
+<div class="container col3-layout">
+    <div class="col col-1">
+        <div class="title">
+            <div class="btn-set">
+                <a href="#" class="btn-create-new"><span><?php echo $this->__('Create New'); ?></span></a>
+            </div>
+            <h3><?php echo $this->__('Color Group'); ?></h3>
+        </div>
+        <div class="content">
+            <select name="color-group" id="select-color-group" size="20">
+                
+            </select>
+        </div>
+    </div>
+    <div class="col col-2">
+        <div class="title">
+            <h3><?php echo $this->__('Color Attribute Value List'); ?></h3>
+        </div>
+        <div class="content">
+            <select name="color-attribute" id="select-color-attribute" multiple size="18">
+                <?php foreach ($_colors as $_color): ?>
+                <option value="<?php echo $_color['value']; ?>" data-code="<?php echo $_color['code']; ?>"><?php echo $_color['label']; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <div class="preview color-attribute-preview">
+                <span class="color-box"></span>
+                <span class="name"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col col-3">
+        <div class="field">
+            <label for="select-store-view"><?php echo $this->__('Store View'); ?></label>
+            <select name="store-view" id="select-store-view">
+                <?php foreach ($_stores as $_store): ?>
+                <?php if (is_array($_store['value'])): ?>
+                <optgroup label="<?php echo $_store['label']; ?>">
+                    <?php foreach ($_store['value'] as $_store_view): ?>
+                    <option value="<?php echo $_store_view['value']; ?>"><?php ?><?php echo $_store_view['label']; ?></option>
+                    <?php endforeach; ?>
+                </optgroup>
+                <?php else: ?>
+                <option value="<?php echo $_store['value']?>"><?php echo $_store['label']?></option>
+                <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="field">
+            <label for="input-group-name"><?php echo $this->__('Group Name'); ?></label>
+            <input type="text" id="input-group-name" placeholder="<?php echo $this->__('Input Group Name here. '); ?>">
+        </div>
+        <div class="field">
+            <label for="input-group-color-code"><?php echo $this->__('Group Color Code'); ?></label>
+            <input type="text" id="input-group-color-code" placeholder="<?php echo $this->__('Input the Color Code here. '); ?>">
+        </div>
+
+        <div class="preview">
+            
+        </div>
+
+        <div class="btn-set modify-panel">
+            <a href="#"><span><?php echo $this->__('Delete Group'); ?></span></a>
+            <a href="#"><span><?php echo $this->__('Save Modification'); ?></span></a>
+        </div>
+        <div class="btn-set create-panel hidden">
+            <a href="#" class="btn-action"><span><?php echo $this->__('Create');?></span></a>
+            <a href="#" class="btn-cancel"><span><?php echo $this->__('Cancel');?></span></a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var acfBaseUrl = '<?php echo $this->getACFBaseUrl(); ?>';
+    var formKey = '<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>';
+</script>
