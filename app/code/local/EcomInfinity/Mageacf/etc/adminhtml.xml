@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <ecominfinity>
+            <title>EcomInfinity</title>
+            <sort_order>25</sort_order>
+            <children>
+                <mageacf translate="title" module="mageacf">
+                    <title>Colour Group Management</title>
+                    <action>adminhtml/mageacf/index</action>
+                    <sort_order>10</sort_order>
+                </mageacf>
+            </children>
+        </ecominfinity>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <ecominfinity translate="title" module="mageacf">
+                        <title>EcomInfinity</title>
+                        <sort_order>100</sort_order>
+                        <children>
+                            <mageacf translate="title">
+                                <title>Advanced Colour Filter</title>
+                            </mageacf>
+                        </children>
+                    </ecominfinity>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

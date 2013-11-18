@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <EcomInfinity_Mageacf>
+            <active>true</active>
+            <codePool>local</codePool>
+        </EcomInfinity_Mageacf>
+    </modules>
+</config> 

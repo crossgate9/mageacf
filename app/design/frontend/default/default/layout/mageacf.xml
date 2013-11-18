@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <mageacf_index_index>
+        <reference name="content">
+            <block type="mageacf/mageacf" name="mageacf" template="mageacf/mageacf.phtml" />
+        </reference>
+    </mageacf_index_index>
+</layout> 

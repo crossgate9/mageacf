@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_mageacf_index>
+        <reference name="content">
+            <block name="mageacf.home" type="mageacf/adminhtml_edit" template="mageacf/index.phtml"></block>
+        </reference>
+    </adminhtml_mageacf_index>
+</layout>
