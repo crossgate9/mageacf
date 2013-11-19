@@ -38,7 +38,7 @@ class EcomInfinity_Mageacf_Block_Adminhtml_Edit extends Mage_Core_Block_Template
     }
 
     public function getAllACFs() {
-        $_acfs = Mage::getModel('mageacf/group')->getCollection();
+        $_acfs = Mage::getModel('mageacf/group')->getCollection()->getItems();
         $_result = array();
         foreach ($_acfs as $_acf) {
             $_result[] = $_acf->getData();

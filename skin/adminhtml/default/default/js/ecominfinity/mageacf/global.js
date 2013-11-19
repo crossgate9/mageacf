@@ -23,7 +23,8 @@ var ACF = (function($) {
         var data = {
             name: name,
             color: color,
-            storeview: store_view
+            storeview: store_view,
+            list: list
         };
         this.ajax(url, data, callback);
     };
@@ -59,6 +60,20 @@ var acf;
             $(this).css('background', '');
         });
 
+        // color group select action
+        $('#select-color-group').change(function() {
+            var id = $(this).val();
+            var $option = $(this).find('option:selected');
+            var name = $option.html();
+            var color = $option.data('color');
+
+            $('#input-group-name').val(name);
+            $('#input-group-color-code').val(color);
+
+            $('.modify-panel').show();
+            $('.create-panel').hide();
+        });
+
         // create new action
         $('.btn-create-new').on('click', function() {
             $('#input-group-name').val('');
@@ -73,7 +88,7 @@ var acf;
             var name = $('#input-group-name').val(),
                 color = $('#input-group-color-code').val(),
                 storeView = $('#select-store-view').val(),
-                list = null;
+                list = $('#select-color-attribute').val();
             acf.create(name, color, storeView, list, function(response) {
                 console.log(response);
             });

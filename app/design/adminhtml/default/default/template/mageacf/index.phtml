@@ -5,6 +5,24 @@
 ?>
 
 <h2><?php echo $this->__('Color Group Management');?></h2>
+<div class="container col1-layout">
+    <div class="field">
+        <label for="select-store-view"><?php echo $this->__('Store View'); ?></label>
+        <select name="store-view" id="select-store-view">
+            <?php foreach ($_stores as $_store): ?>
+            <?php if (is_array($_store['value'])): ?>
+            <optgroup label="<?php echo $_store['label']; ?>">
+                <?php foreach ($_store['value'] as $_store_view): ?>
+                <option value="<?php echo $_store_view['value']; ?>"><?php ?><?php echo $_store_view['label']; ?></option>
+                <?php endforeach; ?>
+            </optgroup>
+            <?php else: ?>
+            <option value="<?php echo $_store['value']?>"><?php echo $_store['label']?></option>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+    </div>
+</div>
 <div class="container col3-layout">
     <div class="col col-1">
         <div class="title">
@@ -15,7 +33,9 @@
         </div>
         <div class="content">
             <select name="color-group" id="select-color-group" size="20">
-                
+                <?php foreach($_acfs as $_acf): ?>
+                    <option value="<?php echo $_acf['entity_id']; ?>" data-color="<?php echo $_acf['color']; ?>"><?php echo $_acf['name'];?></option>
+                <?php endforeach; ?>
             </select>
         </div>
     </div>
@@ -37,22 +57,6 @@
         </div>
     </div>
     <div class="col col-3">
-        <div class="field">
-            <label for="select-store-view"><?php echo $this->__('Store View'); ?></label>
-            <select name="store-view" id="select-store-view">
-                <?php foreach ($_stores as $_store): ?>
-                <?php if (is_array($_store['value'])): ?>
-                <optgroup label="<?php echo $_store['label']; ?>">
-                    <?php foreach ($_store['value'] as $_store_view): ?>
-                    <option value="<?php echo $_store_view['value']; ?>"><?php ?><?php echo $_store_view['label']; ?></option>
-                    <?php endforeach; ?>
-                </optgroup>
-                <?php else: ?>
-                <option value="<?php echo $_store['value']?>"><?php echo $_store['label']?></option>
-                <?php endif; ?>
-                <?php endforeach; ?>
-            </select>
-        </div>
         <div class="field">
             <label for="input-group-name"><?php echo $this->__('Group Name'); ?></label>
             <input type="text" id="input-group-name" placeholder="<?php echo $this->__('Input Group Name here. '); ?>">
