@@ -6,28 +6,30 @@
 
 <h2><?php echo $this->__('Color Group Management');?></h2>
 <div class="container col1-layout">
-    <div class="field">
-        <label for="select-store-view"><?php echo $this->__('Store View'); ?></label>
-        <select name="store-view" id="select-store-view">
-            <?php foreach ($_stores as $_store): ?>
-            <?php if (is_array($_store['value'])): ?>
-            <optgroup label="<?php echo $_store['label']; ?>">
-                <?php foreach ($_store['value'] as $_store_view): ?>
-                <option value="<?php echo $_store_view['value']; ?>"><?php ?><?php echo $_store_view['label']; ?></option>
+    <div class="top-toolbar">
+        <div class="field">
+            <label for="select-store-view"><?php echo $this->__('Store View'); ?></label>
+            <select name="store-view" id="select-store-view">
+                <?php foreach ($_stores as $_store): ?>
+                <?php if (is_array($_store['value'])): ?>
+                <optgroup label="<?php echo $_store['label']; ?>">
+                    <?php foreach ($_store['value'] as $_store_view): ?>
+                    <option value="<?php echo $_store_view['value']; ?>"><?php ?><?php echo $_store_view['label']; ?></option>
+                    <?php endforeach; ?>
+                </optgroup>
+                <?php else: ?>
+                <option value="<?php echo $_store['value']?>"><?php echo $_store['label']?></option>
+                <?php endif; ?>
                 <?php endforeach; ?>
-            </optgroup>
-            <?php else: ?>
-            <option value="<?php echo $_store['value']?>"><?php echo $_store['label']?></option>
-            <?php endif; ?>
-            <?php endforeach; ?>
-        </select>
+            </select>
+        </div>
     </div>
 </div>
 <div class="container col3-layout">
     <div class="col col-1">
         <div class="title">
             <div class="btn-set">
-                <a href="#" class="btn-create-new"><span><?php echo $this->__('Create New'); ?></span></a>
+                <a href="#" class="btn btn-create-new"><span><?php echo $this->__('Create New'); ?></span></a>
             </div>
             <h3><?php echo $this->__('Color Group'); ?></h3>
         </div>
@@ -48,7 +50,7 @@
             </select>
 
             <div class="preview color-attribute-preview">
-                <span class="color-box"></span>
+                <span class="color-box"><span></span></span>
                 <span class="name"></span>
             </div>
         </div>
@@ -63,17 +65,18 @@
             <input type="text" id="input-group-color-code" placeholder="<?php echo $this->__('Input the Color Code here. '); ?>">
         </div>
 
-        <div class="preview">
-            
+        <div class="field preview">
+            <h4><?php echo $this->__('Preview'); ?></h4>
+            <div class="content"></div>
         </div>
 
         <div class="btn-set modify-panel">
-            <a href="#" class="btn-delete"><span><?php echo $this->__('Delete Group'); ?></span></a>
-            <a href="#" class="btn-update"><span><?php echo $this->__('Save Modification'); ?></span></a>
+            <a href="#" class="btn btn-delete"><span><?php echo $this->__('Delete Group'); ?></span></a>
+            <a href="#" class="btn btn-update"><span><?php echo $this->__('Save Modification'); ?></span></a>
         </div>
         <div class="btn-set create-panel hidden">
-            <a href="#" class="btn-action"><span><?php echo $this->__('Create');?></span></a>
-            <a href="#" class="btn-cancel"><span><?php echo $this->__('Cancel');?></span></a>
+            <a href="#" class="btn btn-action"><span><?php echo $this->__('Create');?></span></a>
+            <a href="#" class="btn btn-cancel"><span><?php echo $this->__('Cancel');?></span></a>
         </div>
     </div>
 </div>

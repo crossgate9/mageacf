@@ -86,31 +86,42 @@ var acf;
         acf = new ACF(acfBaseUrl, formKey, acfJson);
 
         // common UI update function
-        var _groupOptionTemplate = '<option value="%s">%s</option>';
+        var _groupOptionTemplate = '<option value="%s">%s</option>',
+            _previewColorTemplate = '<span class="color-box"><span style="background: %s"></span></span>',
+            _clearTemplate = '<div class="clear"></div>';
         var refresh = function(data) {
             var storeview = $('#select-store-view').val();
             var $groupSelect = $('#select-color-group').empty();
+
+            data = _.sortBy(data, function(obj) { return -obj.position; });
 
             $.each(data, function(idx, val) {
                 if (val.store_view === storeview) {
                     $groupSelect.append(sprintf(_groupOptionTemplate, val.entity_id, val.name));
                 }
             });
+
+            var $preview = $('.field.preview .content');
+            $preview.empty();
+            $.each(data, function(idx, val) {
+                if (val.store_view === storeview) {
+                    $preview.append(sprintf(_previewColorTemplate, val.color));
+                }
+            });
+            $preview.append(_clearTemplate);
         };
         refresh(acf.getData());
 
         // storeview select action 
         $('#select-store-view').change(function() {
             refresh(acf.getData());
-
-            // TODO: update the preview
         });
 
         // color attribute hover effect
         $('#select-color-attribute').on('mouseenter', 'option', function(e) {
             var code = $(this).data('code');
             var name = $(this).html();
-            $('.color-attribute-preview .color-box').css('background', code);
+            $('.color-attribute-preview .color-box span').css('background', code);
             $('.color-attribute-preview .name').html(name);
             $(this).css('background', '#ddd');
         });
