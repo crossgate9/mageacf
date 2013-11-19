@@ -65,4 +65,30 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
             );   
         }
     }
+
+    public function updateAction() {
+        try {
+            $_params = $this->getRequest()->getParams();
+            $_id = $_params['id'];
+            $_acf = Mage::getModel('mageacf/group')->load($_id);
+            $_acf->setData('name', $_params['name']);
+            $_acf->setData('color', $_params['color']);
+            $_acf->setData('attributes', (string) json_encode($_params['list']));
+            $_acf->setData('update_time', (string) date('Y-m-d H:i:s', time()));
+            $_acf->save();
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    true, 
+                    Mage::getModel('mageacf/group')->load($_id)->getData()
+                )
+            );
+        } catch (Exception $e) {
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    false, 
+                    $e->getMessage()
+                )
+            );   
+        }
+    }
 }

@@ -57,6 +57,24 @@ var ACF = (function($) {
         });
     };
 
+    c.prototype.update = function(id, name, color, list, callback) {
+        var self = this;
+        var url = this.url.update;
+        var data = {
+            id: id,
+            name: name,
+            color: color,
+            list: list
+        };
+        this.ajax(url, data, function(response) {
+            var d = $.parseJSON(response);
+            if (d.success === true) {
+                self.gData[d.data.entity_id] = d.data;
+                callback(d.data);
+            }
+        });
+    };
+
     return c;
 
 })(jQuery);
@@ -161,6 +179,17 @@ var acf;
         $('.modify-panel .btn-delete').on('click', function() {
             var id = $('#select-color-group').val();
             acf.delete(id, function(data) {
+                refresh(acf.getData());
+            });
+            return false;
+        });
+
+        $('.modify-panel .btn-update').on('click', function() {
+            var id = $('#select-color-group').val(),
+                name = $('#input-group-name').val(),
+                color = $('#input-group-color-code').val(),
+                list = $('#select-color-attribute').val();
+            acf.update(id, name, color, list, function(data) {
                 refresh(acf.getData());
             });
             return false;
