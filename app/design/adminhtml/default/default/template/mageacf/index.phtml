@@ -1,5 +1,5 @@
 <?php
-    $_acfs = $this->getAllACFs();
+    $_acfs = Mage::helper('mageacf')->getACFJson();
     $_colors = $this->getAllColors();
     $_stores = $this->getAllStores();
 ?>
@@ -33,9 +33,6 @@
         </div>
         <div class="content">
             <select name="color-group" id="select-color-group" size="20">
-                <?php foreach($_acfs as $_acf): ?>
-                    <option value="<?php echo $_acf['entity_id']; ?>" data-color="<?php echo $_acf['color']; ?>"><?php echo $_acf['name'];?></option>
-                <?php endforeach; ?>
             </select>
         </div>
     </div>
@@ -84,4 +81,5 @@
 <script type="text/javascript">
     var acfBaseUrl = jQuery.parseJSON('<?php echo json_encode($this->getACFUrls()); ?>');
     var formKey = '<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>';
+    var acfJson = jQuery.parseJSON('<?php echo addslashes($_acfs); ?>');
 </script>
