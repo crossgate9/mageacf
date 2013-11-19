@@ -36,7 +36,7 @@ var ACF = (function($) {
         this.ajax(url, data, function(response) {
             var d = $.parseJSON(response);
             if (d.success === true) {
-                self.gData[d.data.entity_id] = d;
+                self.gData[d.data.entity_id] = d.data;
                 callback(d.data);
             }
         });

@@ -21,11 +21,12 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
             $_acf->setData('name', (string) $_params['name']);
             $_acf->setData('color', (string) $_params['color']);
             $_acf->setData('store_view', (string) $_params['storeview']);
-            $_acf->setData('attributes', (string) json_encode($_params['list']));
             $_acf->setData('position', (string) '0');
+            $_acf->setData('attributes', (string) json_encode($_params['list']));
             $_acf->setData('created_time', (string) date('Y-m-d H:i:s', time()));
             $_acf->setData('update_time', (string) date('Y-m-d H:i:s', time()));
-            $_id = $_acf->save();
+            $_acf->save();
+            $_id = $_acf->getId();
 
             $this->getResponse()->setBody(
                 $this->_prepareResponse(
@@ -37,7 +38,7 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
             $this->getResponse()->setBody(
                 $this->_prepareResponse(
                     false, 
-                    $e->getMessage()
+                    $e->getTrace()
                 )
             );
         }
