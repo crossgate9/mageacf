@@ -5,8 +5,11 @@ class EcomInfinity_Mageacf_Block_Adminhtml_Edit extends Mage_Core_Block_Template
         return parent::_prepareLayout();
     }
 
-    public function getACFBaseUrl() {
-        return $this->getUrl('adminhtml/mageacf');
+    public function getACFUrls() {
+        return array(
+            'index' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/index'),
+            'create' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/create')
+        );
     }
 
     public function getAllColors() {

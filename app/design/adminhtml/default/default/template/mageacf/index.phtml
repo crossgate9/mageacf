@@ -78,6 +78,6 @@
 </div>
 
 <script type="text/javascript">
-    var acfBaseUrl = '<?php echo $this->getACFBaseUrl(); ?>';
+    var acfBaseUrl = jQuery.parseJSON('<?php echo json_encode($this->getACFUrls()); ?>');
     var formKey = '<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>';
 </script>

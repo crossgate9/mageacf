@@ -2,10 +2,10 @@ jQuery.noConflict();
 
 var ACF = (function($) {
     var c = function(url, formKey) {
-        this.baseUrl = url;
+        this.url = url;
         this.formKey = formKey;
         this.ajax = function(url, data, callback) {
-            $.extend(data, {formKey: this.formKey});
+            $.extend(data, {'form_key': this.formKey});
             $.ajax({
                 url: url,
                 data: data,
@@ -19,7 +19,7 @@ var ACF = (function($) {
     };
 
     c.prototype.create = function(name, color, store_view, list, callback) {
-        var url = this.baseUrl + 'create';
+        var url = this.url.create;
         var data = {
             name: name,
             color: color,
@@ -29,7 +29,7 @@ var ACF = (function($) {
     };
 
     c.prototype.delete = function(id, callback) {
-        var url = this.baseUrl + 'delete';
+        var url = this.url + 'delete';
         var data = {
             id: id
         };
