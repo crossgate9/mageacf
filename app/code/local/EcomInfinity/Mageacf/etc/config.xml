@@ -92,4 +92,11 @@
             </updates>
         </layout>
     </adminhtml>
+    <default>
+        <mageacf>
+            <general>
+                <jquery>1</jquery>
+            </general>
+        </mageacf>
+    </default>
 </config>

@@ -17,6 +17,18 @@
         <resources>
             <admin>
                 <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mageacf translate="title" module="mageacf">
+                                        <title>Config Advanced Colour Filter</title>
+                                        <sort_order>50</sort_order>
+                                    </mageacf>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
                     <ecominfinity translate="title" module="mageacf">
                         <title>EcomInfinity</title>
                         <sort_order>100</sort_order>
