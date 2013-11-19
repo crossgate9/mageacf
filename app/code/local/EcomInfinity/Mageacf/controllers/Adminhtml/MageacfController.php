@@ -91,4 +91,33 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
             );   
         }
     }
+
+    public function positionAction() {
+        try {
+            $_params = $this->getRequest()->getParams();
+            $_list = $_params['list'];
+            $_len = count($_list);
+            $_res = array();
+            foreach($_list as $_id) {
+                $_acf = Mage::getModel('mageacf/group')->load($_id);
+                $_acf->setData('position', $_len);
+                $_acf->save();
+                $_res[$_id] = $_len;
+                $_len --;
+            }
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    true,
+                    $_res
+                )
+            );   
+        } catch (Exception $e) {
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    false, 
+                    $e->getMessage()
+                )
+            );   
+        }
+    }
 }

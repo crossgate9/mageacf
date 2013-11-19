@@ -11,6 +11,7 @@ class EcomInfinity_Mageacf_Block_Adminhtml_Edit extends Mage_Core_Block_Template
             'create' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/create'),
             'delete' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/delete'),
             'update' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/update'),
+            'position' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/position'),
         );
     }
 

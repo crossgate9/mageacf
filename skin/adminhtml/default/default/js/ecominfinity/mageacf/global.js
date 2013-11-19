@@ -75,6 +75,24 @@ var ACF = (function($) {
         });
     };
 
+    c.prototype.position = function(list, callback) {
+        var self = this;
+        var url = this.url.position;
+        var data = {
+            list: list
+        };
+        this.ajax(url, data, function(response) {
+            var d = $.parseJSON(response);
+            if (d.success === true) {
+                list = d.data;
+                $.each(list, function(idx, val) {
+                    self.gData[idx].position = val;
+                });
+                callback(d.data);
+            }
+        });
+    };
+
     return c;
 
 })(jQuery);
@@ -87,7 +105,7 @@ var acf;
 
         // common UI update function
         var _groupOptionTemplate = '<option value="%s">%s</option>',
-            _previewColorTemplate = '<span class="color-box"><span style="background: %s"></span></span>',
+            _previewColorTemplate = '<span class="color-box" data-id="%s"><span style="background: %s"></span></span>',
             _clearTemplate = '<div class="clear"></div>';
         var refresh = function(data) {
             var storeview = $('#select-store-view').val();
@@ -105,10 +123,24 @@ var acf;
             $preview.empty();
             $.each(data, function(idx, val) {
                 if (val.store_view === storeview) {
-                    $preview.append(sprintf(_previewColorTemplate, val.color));
+                    $preview.append(sprintf(_previewColorTemplate, val.entity_id, val.color));
                 }
             });
             $preview.append(_clearTemplate);
+            $preview.sortable({
+                start: function(event, ui) {
+                },
+                stop: function(event, ui) {
+                    var $preview = $('.field.preview .content .color-box');
+                    var list = [];
+                    $preview.each(function(idx, val) {
+                        list.push($(val).data('id'));
+                    });
+                    acf.position(list, function(data) {
+                        refresh(acf.getData());
+                    });
+                }
+            });
         };
         refresh(acf.getData());
 

@@ -30,7 +30,7 @@ h2 { margin-bottom: 18px; border-bottom: 4px solid #dfdfdf; padding-bottom: .25e
 .col3-layout input { width: 100%; height: 20px; padding: 5px; }
 
 .preview { margin: 10px 0; }
-.color-box { padding: 3px; border: 1px solid #ddd; float: left; }
+.color-box { padding: 3px; border: 1px solid #ddd; float: left; cursor: pointer; background: #fff; }
 .color-box span { float: left; display: block; width: 16px; height: 16px; }
 .color-attribute-preview .name { margin: 3px 0 0 10px; }
 
