@@ -8,7 +8,8 @@ class EcomInfinity_Mageacf_Block_Adminhtml_Edit extends Mage_Core_Block_Template
     public function getACFUrls() {
         return array(
             'index' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/index'),
-            'create' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/create')
+            'create' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/create'),
+            'delete' => Mage::helper('adminhtml')->getUrl('adminhtml/mageacf/delete'),
         );
     }
 

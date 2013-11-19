@@ -1,29 +1,67 @@
 <?php
 
 class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Controller_Action {
+
+    private function _prepareResponse($_isSuccess, $_data) {
+        return json_encode(array(
+            'success' => $_isSuccess,
+            'data' => $_data
+        ));
+    }
+
     public function indexAction() {
         $this->loadLayout();     
         $this->renderLayout();
     }
 
-
-
     public function createAction() {
-        $_params = $this->getRequest()->getParams();
-        $_acf = Mage::getModel('mageacf/group');
-        $_acf->setData('name', $_params['name']);
-        $_acf->setData('color', $_params['color']);
-        $_acf->setData('store_view', $_params['storeview']);
-        $_acf->setData('attributes', json_encode($_params['list']));
-        $_acf->setData('position', 0);
-        $_acf->setData('created_time', date('Y-m-d H:i:s', time()));
-        $_acf->setData('update_time', date('Y-m-d H:i:s', time()));
-        $_id = $_acf->save();
+        try {
+            $_params = $this->getRequest()->getParams();
+            $_acf = Mage::getModel('mageacf/group');
+            $_acf->setData('name', (string) $_params['name']);
+            $_acf->setData('color', (string) $_params['color']);
+            $_acf->setData('store_view', (string) $_params['storeview']);
+            $_acf->setData('attributes', (string) json_encode($_params['list']));
+            $_acf->setData('position', (string) '0');
+            $_acf->setData('created_time', (string) date('Y-m-d H:i:s', time()));
+            $_acf->setData('update_time', (string) date('Y-m-d H:i:s', time()));
+            $_id = $_acf->save();
 
-        $this->getResponse()->setBody(
-            json_encode(
-                Mage::getModel('mageacf/group')->load($_id)->getData()
-            )
-        );
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    true, 
+                    Mage::getModel('mageacf/group')->load($_id)->getData()
+                )
+            );
+        } catch (Exception $e) {
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    false, 
+                    $e->getMessage()
+                )
+            );
+        }
+    }
+
+    public function deleteAction() {
+        try {
+            $_params = $this->getRequest()->getParams();
+            $_id = $_params['id'];
+            $_acf = Mage::getModel('mageacf/group')->load($_id);
+            $_acf->delete();
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    true, 
+                    array('id'=>$_id)
+                )
+            );   
+        } catch (Exception $e) {
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    false, 
+                    $e->getMessage()
+                )
+            );   
+        }
     }
 }

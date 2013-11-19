@@ -14,8 +14,8 @@ var ACF = (function($) {
                 type: 'POST',
                 beforeSend: function() { $.fancybox.showLoading(); }
             }).done(function(response) {
-                callback(response);
                 $.fancybox.hideLoading();
+                callback(response);
             });
         };
     };
@@ -25,6 +25,7 @@ var ACF = (function($) {
     };
 
     c.prototype.create = function(name, color, store_view, list, callback) {
+        var self = this;
         var url = this.url.create;
         var data = {
             name: name,
@@ -33,18 +34,27 @@ var ACF = (function($) {
             list: list
         };
         this.ajax(url, data, function(response) {
-            callback(response);
             var d = $.parseJSON(response);
-            this.gData[d.entity_id] = d;
+            if (d.success === true) {
+                self.gData[d.data.entity_id] = d;
+                callback(d.data);
+            }
         });
     };
 
     c.prototype.delete = function(id, callback) {
-        var url = this.url + 'delete';
+        var self = this;
+        var url = this.url.delete;
         var data = {
             id: id
         };
-        this.ajax(url, data, callback);
+        this.ajax(url, data, function(response) {
+            var d = $.parseJSON(response);
+            if (d.success === true) {
+                delete self.gData[d.data.id];
+                callback(d.data);
+            }
+        });
     };
 
     return c;
@@ -116,6 +126,8 @@ var acf;
 
             $('.modify-panel').show();
             $('.create-panel').hide();
+
+            return false;
         });
 
         // create new action
@@ -134,14 +146,23 @@ var acf;
                 color = $('#input-group-color-code').val(),
                 storeView = $('#select-store-view').val(),
                 list = $('#select-color-attribute').val();
-            acf.create(name, color, storeView, list, function(response) {
-                console.log(response);
+            acf.create(name, color, storeView, list, function(data) {
+                refresh(acf.getData());
             });
             return false;
         });
 
         $('.create-panel .btn-cancel').on('click', function() {
             $('.create-panel').hide();
+            return false;
+        });
+
+        // modify action
+        $('.modify-panel .btn-delete').on('click', function() {
+            var id = $('#select-color-group').val();
+            acf.delete(id, function(data) {
+                refresh(acf.getData());
+            });
             return false;
         });
     });
