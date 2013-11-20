@@ -13,6 +13,14 @@ var ACF = (function($) {
         if (isEmpty === true) {
             this.storeview = '0';
         }
+
+        $ctn.parent().find('.btn-clear').on('click', function() {
+            var currentUri = new Uri(document.URL);
+            currentUri.deleteQueryParam('color[]');
+            window.location = currentUri.toString();
+            return false;
+        });
+
         this.render();
     };
 

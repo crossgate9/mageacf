@@ -2,7 +2,10 @@
     $_acfs = Mage::helper('mageacf')->getACFJson();
 ?>
 <div class="hidden-phone acf-container">
-    <div class="title"><?php echo $this->__('Color'); ?></div>
+    <div class="title">
+        <a class="btn-clear fr" href="#"><?php echo $this->__('Clear'); ?></a>
+        <span><?php echo $this->__('Color'); ?></span>
+    </div>
     <div class="filters">
         
     </div>
