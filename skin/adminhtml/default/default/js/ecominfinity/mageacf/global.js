@@ -105,6 +105,7 @@ var acf;
 
         // common UI update function
         var _groupOptionTemplate = '<option value="%s">%s</option>',
+            _colorAttrCountTemplate = '(%s / %s)',
             _previewColorTemplate = '<span class="color-box" data-id="%s"><span style="background: %s"></span></span>',
             _clearTemplate = '<div class="clear"></div>';
         var refresh = function(data) {
@@ -184,6 +185,11 @@ var acf;
                     $selectColorAttribute.find('option[value="'+val+'"]').attr('selected', 'selected');
                 });
             }
+            $('.color-attribute-count').html(
+                sprintf(_colorAttrCountTemplate,
+                        $selectColorAttribute.find('option[selected="selected"]').length,
+                        $selectColorAttribute.find('option').length)
+            );
 
             $('.modify-panel').show();
             $('.create-panel').hide();
