@@ -10,6 +10,8 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
     }
 
     public function indexAction() {
+        $this->_title($this->__('Ecom Infinity'))
+             ->_title($this->__('Color Group Management'));
         $this->loadLayout();     
         $this->renderLayout();
     }
