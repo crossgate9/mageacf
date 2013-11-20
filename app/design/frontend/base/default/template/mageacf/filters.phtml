@@ -1,0 +1,14 @@
+<?php
+    $_acfs = Mage::helper('mageacf')->getACFJson();
+?>
+<div class="hidden-phone acf-container">
+    <div class="title"><?php echo $this->__('Color'); ?></div>
+    <div class="filters">
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+    var acfJson = jQuery.parseJSON('<?php echo addslashes($_acfs); ?>');
+    var storeview = '<?php echo Mage::app()->getStore()->getId(); ?>';
+</script>
