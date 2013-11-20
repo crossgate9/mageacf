@@ -5,6 +5,7 @@
             <action method="addJs" ifconfig="mageacf/general/jquery"><script>ecominfinity/jquery.js</script></action>
             <action method="addJs"><script>ecominfinity/sprintf.js</script></action>
             <action method="addJs"><script>ecominfinity/underscore.js</script></action>
+            <action method="addJs"><script>ecominfinity/Uri.js</script></action>
             <action method="addItem"><type>skin_js</type><name>js/ecominfinity/mageacf/global.js</name></action>
 
             <action method="addCss"><stylesheet>css/ecominfinity/mageacf/global.css</stylesheet></action>

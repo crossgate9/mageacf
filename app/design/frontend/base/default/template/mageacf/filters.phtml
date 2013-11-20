@@ -11,4 +11,5 @@
 <script type="text/javascript">
     var acfJson = jQuery.parseJSON('<?php echo addslashes($_acfs); ?>');
     var storeview = '<?php echo Mage::app()->getStore()->getId(); ?>';
+    var colorId = <?php echo Mage::helper('mageacf')->getColorAttributeId(); ?>;
 </script>

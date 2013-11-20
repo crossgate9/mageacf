@@ -2,6 +2,6 @@
 .acf-container .title { border-bottom: 1px solid #ddd; margin-bottom: 10px; }
 
 .color-box { padding: 3px; border: 1px solid #ddd; float: left; cursor: pointer; background: #fff; margin: 0 5px 5px 0; }
-.color-box.active .color-box:hover { border-color: #333; }
+.color-box[data-selected="true"], .color-box:hover { border-color: #333; }
 .color-box span { float: left; display: block; width: 16px; height: 16px; }
 

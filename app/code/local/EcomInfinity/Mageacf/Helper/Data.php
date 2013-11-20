@@ -10,4 +10,10 @@ class EcomInfinity_Mageacf_Helper_Data extends Mage_Core_Helper_Abstract {
         }
         return json_encode($_res);
     }
+
+    public function getColorAttributeId() {
+        $_config = Mage::getModel('eav/config');
+        $_attribute = $_config->getAttribute(Mage_Catalog_Model_Product::ENTITY, 'color');
+        return $_attribute->getId();
+    }
 }
