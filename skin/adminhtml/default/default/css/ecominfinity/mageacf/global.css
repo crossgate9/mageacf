@@ -28,8 +28,9 @@ h2 { margin-bottom: 18px; border-bottom: 4px solid #dfdfdf; padding-bottom: .25e
 
 .col3-layout .title .btn-set { float: right; }
 .col3-layout select { width: 100%; }
-.col3-layout input[type="color"] { width: 30px; height: 34px; float: left; outline: none; }
-.col3-layout input[type="text"] { width: 96%; height: 20px; padding: 5px 1%; }
+.col3-layout input[type="color"] { width: 30px; height: 34px; float: left; }
+.col3-layout input[type="text"] { width: 96%; height: 20px; padding: 5px 1%; outline: none; border: 1px solid #aaa; }
+.col3-layout input[type="text"] { -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 #input-group-color-code { width: 82%; margin-left: 2%; }
 input[type=text]:focus, textarea:focus { box-shadow: 0 0 5px rgba(81, 203, 238, 1); border: 1px solid rgba(81, 203, 238, 1); }
 input[type=text].error { box-shadow: 0 0 5px rgba(215, 0, 0, 1); border: 1px solid rgba(215, 0, 0, 1); }
