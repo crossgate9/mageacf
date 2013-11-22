@@ -175,6 +175,7 @@ var acf;
             var $selectColorAttribute = $('#select-color-attribute');
 
             $('#input-group-name').val(name);
+            $('#input-group-color-selector').val(color);
             $('#input-group-color-code').val(color);
             $selectColorAttribute.find('option').attr('selected', false);
 
@@ -195,6 +196,16 @@ var acf;
             $('.create-panel').hide();
 
             return false;
+        });
+
+        // color code input event
+        $('#input-group-color-code').blur(function() {
+            if (/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test($(this).val())) {
+                $('#input-group-color-selector').val($(this).val());
+                $(this).removeClass('error');
+            } else {
+                $(this).addClass('error');
+            }
         });
 
         // create new action
