@@ -3,6 +3,8 @@
 .clear { clear: both; }
 .container { width: 100%; }
 
+select option[disabled] { display: none; }
+
 .btn { border-width: 1px; border-style: solid; border-color: #ed6502 #a04300 #a04300 #ed6502; padding: 4px 10px; text-decoration: none; color: #fff; }
 .btn {
     background: rgb(232,163,65); /* Old browsers */
@@ -26,6 +28,7 @@ h2 { margin-bottom: 18px; border-bottom: 4px solid #dfdfdf; padding-bottom: .25e
 .col3-layout .col { float: left; width: 30%; margin-right: 3%; min-height: 400px; }
 .col3-layout .col:last-child { margin-right: 0; }
 
+.col3-layout .title { margin-bottom: 5px; }
 .col3-layout .title .btn-set { float: right; }
 .col3-layout select { width: 100%; }
 .col3-layout input[type="color"] { width: 30px; height: 34px; float: left; }

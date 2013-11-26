@@ -163,10 +163,30 @@ var acf;
             $(this).css('background', '');
         });
 
+        // color attribute search action
+        var $allColors = [];
+        $('#select-color-attribute option').each(function(idx, val) {
+            $allColors.push($(val).clone());
+        });
+
+        $('#input-search-color-attribute').keyup(function() {
+            var needle = $(this).val();
+            $('#select-color-attribute').empty();
+            $.each($allColors, function(idx, val) {
+                var text = $(val).html();
+                if (text.toLowerCase().indexOf(needle.toLowerCase()) !== -1)  {
+                    $('#select-color-attribute').append($(val).clone());
+                }
+            });
+            $('#select-color-group').change();
+        });
+
         // color group select action
         $('#select-color-group').change(function() {
-            var id = $(this).val(),
-                data = acf.getData(),
+            var id = $(this).val();
+            if (typeof id === 'undefined' || id === null) return;
+
+            var data = acf.getData(),
                 entry = data[id],
                 name = entry.name,
                 color = entry.color,
