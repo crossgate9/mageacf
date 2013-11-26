@@ -31,6 +31,11 @@ class EcomInfinity_Mageacf_Block_Adminhtml_Edit extends Mage_Core_Block_Template
             }
         }
 
+        $_admin_codes = $_attribute->setStoreId(Mage_Core_Model_App::ADMIN_STORE_ID)->getSource()->getAllOptions();
+        foreach ($_admin_codes as $_key => $_code) {
+            $_values[$_key]['admin'] = $_code['label'];
+        }
+
         return $_values;
     }
 

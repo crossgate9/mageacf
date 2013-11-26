@@ -46,7 +46,7 @@
         <div class="content">
             <select name="color-attribute" id="select-color-attribute" multiple size="18">
                 <?php foreach ($_colors as $_color): ?>
-                <option value="<?php echo $_color['value']; ?>" data-code="<?php echo $_color['code']; ?>"><?php echo $_color['label']; ?></option>
+                <option value="<?php echo $_color['value']; ?>" data-code="<?php echo $_color['code']; ?>"><?php echo $_color['admin']; ?> | <?php echo $_color['label']; ?></option>
                 <?php endforeach; ?>
             </select>
 
