@@ -96,6 +96,7 @@
         <mageacf>
             <general>
                 <jquery>1</jquery>
+                <admin_label>1</admin_label>
             </general>
         </mageacf>
     </default>

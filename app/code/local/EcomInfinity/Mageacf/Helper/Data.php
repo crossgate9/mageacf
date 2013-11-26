@@ -16,4 +16,8 @@ class EcomInfinity_Mageacf_Helper_Data extends Mage_Core_Helper_Abstract {
         $_attribute = $_config->getAttribute(Mage_Catalog_Model_Product::ENTITY, 'color');
         return $_attribute->getId();
     }
+
+    public function isShowAdminLabel() {
+        return Mage::getStoreConfig('mageacf/general/admin_label');
+    }
 }
