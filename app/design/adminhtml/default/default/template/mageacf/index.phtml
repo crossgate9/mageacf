@@ -25,6 +25,9 @@
         </div>
     </div>
 </div>
+
+<div class="container col1-layout mageacf-messages"></div>
+
 <div class="container col3-layout">
     <div class="col col-1">
         <div class="title">
@@ -48,7 +51,7 @@
                 <?php foreach ($_colors as $_color): ?>
                 <option value="<?php echo $_color['value']; ?>" data-code="<?php echo $_color['code']; ?>">
                     <?php if (Mage::helper('mageacf')->isShowAdminLabel() === '1'):?>
-                    <?php echo $_color['admin']; ?> | 
+                    <?php echo $_color['admin']; ?> - 
                     <?php endif; ?>
                     <?php echo $_color['label']; ?>
                 </option>

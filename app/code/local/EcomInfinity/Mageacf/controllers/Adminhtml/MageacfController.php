@@ -2,10 +2,11 @@
 
 class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Controller_Action {
 
-    private function _prepareResponse($_isSuccess, $_data) {
+    private function _prepareResponse($_isSuccess, $_data, $_message = "") {
         return json_encode(array(
             'success' => $_isSuccess,
-            'data' => $_data
+            'data' => $_data,
+            'message' => $_message,
         ));
     }
 
@@ -33,7 +34,8 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
             $this->getResponse()->setBody(
                 $this->_prepareResponse(
                     true, 
-                    Mage::getModel('mageacf/group')->load($_id)->getData()
+                    Mage::getModel('mageacf/group')->load($_id)->getData(),
+                    $this->__('The color group has been created.')
                 )
             );
         } catch (Exception $e) {
@@ -55,7 +57,8 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
             $this->getResponse()->setBody(
                 $this->_prepareResponse(
                     true, 
-                    array('id'=>$_id)
+                    array('id'=>$_id),
+                    $this->__('The color group has been deleted.')
                 )
             );   
         } catch (Exception $e) {
@@ -81,7 +84,8 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
             $this->getResponse()->setBody(
                 $this->_prepareResponse(
                     true, 
-                    Mage::getModel('mageacf/group')->load($_id)->getData()
+                    Mage::getModel('mageacf/group')->load($_id)->getData(),
+                    $this->__('The color group has been updated.')
                 )
             );
         } catch (Exception $e) {
@@ -110,7 +114,8 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
             $this->getResponse()->setBody(
                 $this->_prepareResponse(
                     true,
-                    $_res
+                    $_res,
+                    $this->__('The order has been adjuested.')
                 )
             );   
         } catch (Exception $e) {

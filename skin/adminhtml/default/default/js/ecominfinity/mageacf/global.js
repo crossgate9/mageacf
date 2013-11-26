@@ -2,6 +2,9 @@ jQuery.noConflict();
 
 var ACF = (function($) {
     var c = function(url, formKey, data) {
+        var _successMessageTemplate = '<ul class="messages"><li class="success-msg"><ul><li><span>%s</span></li></ul></li></ul>',
+            _failedMessageTemplate = '<ul class="messages"><li class="error-msg"><ul><li><span>%s</span></li></ul></li></ul>';
+
         this.url = url;
         this.formKey = formKey;
         this.gData = data;
@@ -15,6 +18,22 @@ var ACF = (function($) {
                 beforeSend: function() { $.fancybox.showLoading(); }
             }).done(function(response) {
                 $.fancybox.hideLoading();
+
+                // show default magento message
+                var d = $.parseJSON(response);
+                var $message = null;
+                if (d.success === true) {
+                    $message = $(sprintf(_successMessageTemplate, d.message));
+                } else {
+                    $message = $(sprintf(_failedMessageTemplate, d.data));
+                }
+                $('#messages').append($message);
+                setTimeout(function() {
+                    $message.fadeOut(500, function() {
+                        $message.remove();
+                    });
+                }, 3000);
+
                 callback(response);
             });
         };
