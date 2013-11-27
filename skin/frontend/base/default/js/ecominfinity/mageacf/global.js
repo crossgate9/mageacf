@@ -80,6 +80,8 @@ var acf;
 
 (function($) {
     $(function() {
+        if (typeof acfJson === 'undefined' || acfJson === null) return;
+	if (typeof storeview === 'undefined' || storeview === null) return;
         acf = new ACF($('.acf-container .filters'), acfJson, storeview);
     });
 })(jQuery);
