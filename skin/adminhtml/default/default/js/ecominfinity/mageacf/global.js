@@ -185,16 +185,19 @@ var acf;
         // color attribute search action
         var $allColors = [];
         $('#select-color-attribute option').each(function(idx, val) {
-            $allColors.push($(val).clone());
+            $allColors.push($(val));
         });
 
         $('#input-search-color-attribute').keyup(function() {
             var needle = $(this).val();
-            $('#select-color-attribute').empty();
+            $('#select-color-attribute option').each(function(idx, val) {
+                $(val).detach();
+            });
+
             $.each($allColors, function(idx, val) {
                 var text = $(val).html();
                 if (text.toLowerCase().indexOf(needle.toLowerCase()) !== -1)  {
-                    $('#select-color-attribute').append($(val).clone());
+                    $('#select-color-attribute').append($(val));
                 }
             });
             $('#select-color-group').change();
