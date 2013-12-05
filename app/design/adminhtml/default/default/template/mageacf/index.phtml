@@ -78,6 +78,13 @@
             <input type="color" id="input-group-color-selector" name="groupColor" onchange="jQuery('#input-group-color-code').val((jQuery(this).val()));">
             <input type="text" id="input-group-color-code" placeholder="<?php echo $this->__('Input the Color Code here. '); ?>">
         </div>
+        <div class="field preview">
+            <h4><?php echo $this->__('Selected Color List'); ?></h4>
+            <div class="selected-color-list">
+                
+            </div>
+            <div class="clear"></div>
+        </div>
 
         <div class="btn-set modify-panel">
             <a href="#" class="btn btn-delete"><span><?php echo $this->__('Delete Group'); ?></span></a>

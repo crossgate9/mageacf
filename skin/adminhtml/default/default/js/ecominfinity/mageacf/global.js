@@ -161,8 +161,8 @@ var acf;
                     });
                 }
             });
+            updateColorAttributesPreview();
         };
-        refresh(acf.getData());
 
         // storeview select action 
         $('#select-store-view').change(function() {
@@ -184,6 +184,8 @@ var acf;
 
         // color attribute search action
         var $allColors = [];
+        var $colorAttributeSelect = $('#select-color-attribute');
+
         var getSelectColorAttributes = function() {
             var list = [];
             $.each($allColors, function(idx, val) {
@@ -193,8 +195,29 @@ var acf;
             });
             return list;
         };
+
+        var updateColorAttributesPreview = function() {
+            var $container = $('.selected-color-list');
+            $container.empty();
+            $.each($allColors, function(idx, val) {
+                if (val.is(':selected')) {
+                    $container.append(sprintf(_previewColorTemplate, val.val(), val.data('code')));
+                }
+            });
+        };
         
         $('#select-color-attribute option').each(function(idx, val) {
+            $(val).mousedown(function() {
+                var $self = $(this);
+                if ($self.attr('selected')) {
+                    $self.attr('selected', false);
+                } else {
+                    $self.attr('selected', 'selected');
+                }
+                updateColorAttributesPreview();
+                return false;
+            });
+
             $allColors.push($(val));
         });
 
@@ -210,6 +233,7 @@ var acf;
                     $('#select-color-attribute').append(val);
                 }
             });
+            updateColorAttributesPreview();
         });
 
         // color group select action
@@ -245,6 +269,8 @@ var acf;
 
             $('.modify-panel').show();
             $('.create-panel').hide();
+
+            updateColorAttributesPreview();
 
             return false;
         });
@@ -305,5 +331,7 @@ var acf;
             });
             return false;
         });
+
+        refresh(acf.getData());
     });
 })(jQuery);

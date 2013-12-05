@@ -47,4 +47,4 @@ input[type=text].error { box-shadow: 0 0 5px rgba(215, 0, 0, 1); border: 1px sol
 .field label { width: 100%; float: left; font-size: 14px; margin-bottom: 10px; }
 
 .field.preview { border: 1px solid #ddd; padding: 10px 2%; }
-.field.preview .color-box { margin-left: 5px; }
+.field.preview .color-box { margin: 5px 0 0 5px; }
