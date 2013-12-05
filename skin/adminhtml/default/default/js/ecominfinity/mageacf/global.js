@@ -184,6 +184,16 @@ var acf;
 
         // color attribute search action
         var $allColors = [];
+        var getSelectColorAttributes = function() {
+            var list = [];
+            $.each($allColors, function(idx, val) {
+                if ($(val).is(':selected')) {
+                    list.push($(val).val());
+                }
+            });
+            return list;
+        };
+        
         $('#select-color-attribute option').each(function(idx, val) {
             $allColors.push($(val));
         });
@@ -195,12 +205,11 @@ var acf;
             });
 
             $.each($allColors, function(idx, val) {
-                var text = $(val).html();
+                var text = val.html();
                 if (text.toLowerCase().indexOf(needle.toLowerCase()) !== -1)  {
-                    $('#select-color-attribute').append($(val));
+                    $('#select-color-attribute').append(val);
                 }
             });
-            $('#select-color-group').change();
         });
 
         // color group select action
@@ -290,7 +299,7 @@ var acf;
             var id = $('#select-color-group').val(),
                 name = $('#input-group-name').val(),
                 color = $('#input-group-color-code').val(),
-                list = $('#select-color-attribute').val();
+                list = getSelectColorAttributes();
             acf.update(id, name, color, list, function(data) {
                 refresh(acf.getData());
             });
