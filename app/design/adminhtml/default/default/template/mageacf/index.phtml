@@ -37,8 +37,12 @@
             <h3><?php echo $this->__('Color Group'); ?></h3>
         </div>
         <div class="content">
-            <select name="color-group" id="select-color-group" size="20">
+            <select name="color-group" id="select-color-group" size="17">
             </select>
+        </div>
+        <div class="field preview">
+            <h4><?php echo $this->__('Preview'); ?> ( <?php echo $this->__('Drag to adjust order.'); ?> )</h4>
+            <div class="content"></div>
         </div>
     </div>
     <div class="col col-2">
@@ -73,11 +77,6 @@
             <label for="input-group-color-code"><?php echo $this->__('Group Color Code'); ?></label>
             <input type="color" id="input-group-color-selector" name="groupColor" onchange="jQuery('#input-group-color-code').val((jQuery(this).val()));">
             <input type="text" id="input-group-color-code" placeholder="<?php echo $this->__('Input the Color Code here. '); ?>">
-        </div>
-
-        <div class="field preview">
-            <h4><?php echo $this->__('Preview'); ?></h4>
-            <div class="content"></div>
         </div>
 
         <div class="btn-set modify-panel">
