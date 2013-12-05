@@ -117,14 +117,60 @@ class EcomInfinity_Mageacf_Adminhtml_MageacfController extends Mage_Adminhtml_Co
                     $_res,
                     $this->__('The order has been adjuested.')
                 )
-            );   
+            );
         } catch (Exception $e) {
             $this->getResponse()->setBody(
                 $this->_prepareResponse(
                     false, 
                     $e->getMessage()
                 )
-            );   
+            );
+        }
+    }
+
+    public function infoAction() {
+        $_json = Mage::helper('mageacf')->getACFJson();
+        $this->getResponse()->setBody(
+            $this->_prepareResponse(
+                true, 
+                $_json,
+                $this->__('Refresh complete.')
+            )
+        );
+    }
+
+    public function copyAction() {
+        try {
+            $_params = $this->getRequest()->getParams();
+            $_storeview = $_params['store_view'];
+            $_acfs = Mage::getModel('mageacf/group')->getCollection()->getItems();
+            foreach ($_acfs as $_acf) {
+                if ($_acf->getData('store_view') === '0') {
+                    $_new_acf = Mage::getModel('mageacf/group');
+                    $_new_acf->setData('name', $_acf->getData('name'));
+                    $_new_acf->setData('color', $_acf->getData('color'));
+                    $_new_acf->setData('store_view', (string) $_storeview);
+                    $_new_acf->setData('position', $_acf->getData('position'));
+                    $_new_acf->setData('attributes', $_acf->getData('attributes'));
+                    $_new_acf->setData('created_time', (string) date('Y-m-d H:i:s', time()));
+                    $_new_acf->setData('update_time', (string) date('Y-m-d H:i:s', time()));
+                    $_new_acf->save();
+                }
+            }
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    true,
+                    null,
+                    $this->__('Copy complete.')
+                )
+            );
+        } catch (Exception $e) {
+            $this->getResponse()->setBody(
+                $this->_prepareResponse(
+                    false, 
+                    $e->getMessage()
+                )
+            );
         }
     }
 }

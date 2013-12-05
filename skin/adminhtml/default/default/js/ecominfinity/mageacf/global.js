@@ -112,6 +112,33 @@ var ACF = (function($) {
         });
     };
 
+    c.prototype.info = function(callback) {
+        var self = this;
+        var url = this.url.info;
+        this.ajax(url, {}, function(response) {
+            var d = $.parseJSON(response);
+            d.data = $.parseJSON(d.data);
+            if (d.success === true) {
+                self.gData = d.data;
+                callback(d.data);
+            }
+        });
+    };
+
+    c.prototype.copy = function(storeview, callback) {
+        var self = this;
+        var url = this.url.copy;
+        var data = {
+            'store_view': storeview
+        };
+        this.ajax(url, data, function(response) {
+            var d = $.parseJSON(response);
+            if (d.success === true) {
+                self.info(callback);
+            }
+        });
+    };
+
     return c;
 
 })(jQuery);
@@ -131,13 +158,24 @@ var acf;
             var storeview = $('#select-store-view').val();
             var $groupSelect = $('#select-color-group').empty();
 
+            // sort by position
             data = _.sortBy(data, function(obj) { return -obj.position; });
 
+            // append color group to select UI
+            var entryCount = 0;
             $.each(data, function(idx, val) {
                 if (val.store_view === storeview) {
                     $groupSelect.append(sprintf(_groupOptionTemplate, val.entity_id, val.name));
+                    entryCount ++;
                 }
             });
+
+            // no color group for the current store view
+            if (entryCount === 0) {
+                $('.btn-copy-default').show();
+            } else {
+                $('.btn-copy-default').hide();
+            }
 
             var $preview = $('.field.preview .content');
             $preview.empty();
@@ -161,6 +199,7 @@ var acf;
                     });
                 }
             });
+
             updateColorAttributesPreview();
         };
 
@@ -285,6 +324,16 @@ var acf;
             }
         });
 
+        // copy from all store view settings
+        $('.btn-copy-default').on('click', function() {
+            var storeview = $('#select-store-view').val();
+            if (storeview === 0) return false;
+            acf.copy(storeview, function(data) {
+                refresh(acf.getData());
+            });
+            return false;
+        });
+
         // create new action
         $('.btn-create-new').on('click', function() {
             $('#input-group-name').val('');
@@ -327,6 +376,14 @@ var acf;
                 color = $('#input-group-color-code').val(),
                 list = getSelectColorAttributes();
             acf.update(id, name, color, list, function(data) {
+                refresh(acf.getData());
+            });
+            return false;
+        });
+
+        // refresh action
+        $('.btn-refresh').on('click', function() {
+            acf.info(function(data) {
                 refresh(acf.getData());
             });
             return false;

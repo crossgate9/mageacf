@@ -25,11 +25,14 @@ h2 { margin-bottom: 18px; border-bottom: 4px solid #dfdfdf; padding-bottom: .25e
 .col1-layout .field label { float: inherit; }
 .top-toolbar { background: #e7efef; border: 1px solid #cddddd; padding: 10px; margin-bottom: 10px; }
 
+.col3-layout { margin-top: 15px; }
 .col3-layout .col { float: left; width: 30%; margin-right: 3%; min-height: 400px; }
 .col3-layout .col:last-child { margin-right: 0; }
 
 .col3-layout .title { margin-bottom: 5px; }
 .col3-layout .title .btn-set { float: right; }
+.col3-layout .title .btn-set .btn { margin-right: 5px; }
+.col3-layout .title .btn-set .btn:last-child { margin-right: 0; }
 .col3-layout select { width: 100%; }
 .col3-layout input[type="color"] { width: 30px; height: 34px; float: left; }
 .col3-layout input[type="text"] { width: 96%; height: 20px; padding: 5px 1%; outline: none; border: 1px solid #aaa; }
@@ -44,7 +47,7 @@ input[type=text].error { box-shadow: 0 0 5px rgba(215, 0, 0, 1); border: 1px sol
 .color-attribute-preview .name { margin: 3px 0 0 10px; }
 
 .field { width: 100%; margin: 15px 0; box-sizing: border-box; }
-.field label { width: 100%; float: left; font-size: 14px; margin-bottom: 10px; }
+.field label { width: 100%; float: left; font-size: 14px; margin-bottom: 10px; margin-right: 10px; }
 
 .field.preview { border: 1px solid #ddd; padding: 10px 2%; }
 .field.preview .color-box { margin: 5px 0 0 5px; }
