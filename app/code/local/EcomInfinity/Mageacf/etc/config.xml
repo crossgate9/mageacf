@@ -77,7 +77,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <mageacf>EcomInfinity_Mageacf_Adminhtml</mageacf>
+                        <mageacf before="Mage_Adminhtml">EcomInfinity_Mageacf_Adminhtml</mageacf>
                     </modules>
                 </args>
             </adminhtml>
