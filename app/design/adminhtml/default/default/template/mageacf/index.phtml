@@ -55,6 +55,7 @@
         <div class="content">
             <select name="color-attribute" id="select-color-attribute" multiple size="18">
                 <?php foreach ($_colors as $_color): ?>
+                <?php if (strlen($_color['value']) <= 0) { continue; } ?>
                 <option value="<?php echo $_color['value']; ?>" data-code="<?php echo $_color['code']; ?>">
                     <?php if (Mage::helper('mageacf')->isShowAdminLabel() === '1'):?>
                     <?php echo $_color['admin']; ?> - 
