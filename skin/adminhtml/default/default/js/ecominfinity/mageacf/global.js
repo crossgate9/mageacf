@@ -243,6 +243,20 @@ var acf;
                     $container.append(sprintf(_previewColorTemplate, val.val(), val.data('code')));
                 }
             });
+
+            $container.find('.color-box').on('click', function() {
+                var id = $(this).data('id');
+                if (id === '') return false;
+                
+                var $option = $colorAttributeSelect.find(sprintf('option[value="%d"]', id));
+                if ($option.attr('selected')) {
+                    $option.attr('selected', false);
+                } else {
+                    $option.attr('selected', 'selected');
+                }
+                updateColorAttributesPreview();
+                return false;
+            });
         };
         
         $('#select-color-attribute option').each(function(idx, val) {
