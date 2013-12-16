@@ -24,7 +24,7 @@ var ACF = (function($) {
         this.render();
     };
 
-    var _previewColorTemplate = '<span class="color-box" data-id="%s" data-selected="%s"><span style="background: %s"></span></span>',
+    var _previewColorTemplate = '<span class="color-box" data-id="%s" data-selected="%s" title="%s"><span style="background: %s"></span></span>',
         _clearTemplate = '<div class="clear"></div>';
 
     var parseUrl = function() {
@@ -47,7 +47,7 @@ var ACF = (function($) {
         $.each(data, function(idx, val) {
             if (val.store_view === self.storeview) {
                 var selected = isSubset($.parseJSON(val.attributes), currentColors);
-                self.$ctn.append(sprintf(_previewColorTemplate, val.entity_id, selected, val.color));
+                self.$ctn.append(sprintf(_previewColorTemplate, val.entity_id, selected, val.name, val.color));
             }
         });
         self.$ctn.append(_clearTemplate);
