@@ -17,5 +17,5 @@
     var storeview = '<?php echo Mage::app()->getStore()->getId(); ?>';
     var colorId = <?php echo $_helper->getColorAttributeId(); ?>;
     var layerColors = jQuery.parseJSON('<?php echo addslashes($_helper->getCurrentLayerState()); ?>');
-    var isAvailableColorOnly = <?php echo $_helper->isAvailableColorOnly(); ?>
+    var isAvailableColorOnly = <?php echo $_helper->isAvailableColorOnly() ? 'true' : 'false'; ?>;
 </script>

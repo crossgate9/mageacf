@@ -25,19 +25,24 @@ class EcomInfinity_Mageacf_Helper_Data extends Mage_Core_Helper_Abstract {
         $_layer = Mage::getSingleton('catalog/layer');
         $_filters = $_layer->getFilterableAttributes();
         $_colors = array();
-        foreach ($_filters as $_attribute) {
-            if ($_attribute->getAttributeCode() === 'color') {
-                $_block = Mage::app()->getLayout()->createBlock('catalog/layer_filter_attribute')->setLayer($_layer)->setAttributeModel($_attribute)->init();
-                foreach ($_block->getItems() as $_item) {
-                    $_colors[] = $_item->getValue();
+	$_select_color = Mage::app()->getRequest()->getParam('color');
+	if ($_select_color === null) {
+            foreach ($_filters as $_attribute) {
+                if ($_attribute->getAttributeCode() === 'color') {
+                    $_block = Mage::app()->getLayout()->createBlock('catalog/layer_filter_attribute')->setLayer($_layer)->setAttributeModel($_attribute)->init();
+                    foreach ($_block->getItems() as $_item) {
+                        $_colors[] = $_item->getValue();
+                    }
+                    break;
                 }
-                break;
-            }
-        }
+	    }
+        } else {
+	    $_colors = $_select_color;
+	}
         return json_encode($_colors);
     }
 
     public function isAvailableColorOnly() {
-        return Mage::getStoreConfig('mageacf/general/available_color_only');
+        return (Mage::getStoreConfig('mageacf/general/available_color_only') === '1');
     }
 }
