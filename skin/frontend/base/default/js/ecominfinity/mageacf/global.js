@@ -46,6 +46,11 @@ var ACF = (function($) {
         self.$ctn.empty();
         $.each(data, function(idx, val) {
             if (val.store_view === self.storeview) {
+                if (isAvailableColorOnly === true) {
+                    if (_.intersection(layerColors, val.attributes).length === 0) {
+                        return;
+                    }
+                }
                 var selected = isSubset($.parseJSON(val.attributes), currentColors);
                 self.$ctn.append(sprintf(_previewColorTemplate, val.entity_id, selected, val.name, val.color));
             }

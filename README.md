@@ -1,4 +1,4 @@
 mageacf
 =======
 
-An Improvement to Magento default color filter
+An Improvement to Magento default color filter. 

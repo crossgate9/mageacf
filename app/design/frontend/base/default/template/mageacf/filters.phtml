@@ -1,5 +1,6 @@
 <?php
-    $_acfs = Mage::helper('mageacf')->getACFJson();
+    $_helper = Mage::helper('mageacf');
+    $_acfs = $_helper->getACFJson();
 ?>
 <div class="hidden-phone acf-container">
     <div class="title">
@@ -14,5 +15,7 @@
 <script type="text/javascript">
     var acfJson = jQuery.parseJSON('<?php echo addslashes($_acfs); ?>');
     var storeview = '<?php echo Mage::app()->getStore()->getId(); ?>';
-    var colorId = <?php echo Mage::helper('mageacf')->getColorAttributeId(); ?>;
+    var colorId = <?php echo $_helper->getColorAttributeId(); ?>;
+    var layerColors = jQuery.parseJSON('<?php echo addslashes($_helper->getCurrentLayerState()); ?>');
+    var isAvailableColorOnly = <?php echo $_helper->isAvailableColorOnly(); ?>
 </script>
