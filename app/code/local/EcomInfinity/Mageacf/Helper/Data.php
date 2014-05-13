@@ -25,8 +25,8 @@ class EcomInfinity_Mageacf_Helper_Data extends Mage_Core_Helper_Abstract {
         $_layer = Mage::getSingleton('catalog/layer');
         $_filters = $_layer->getFilterableAttributes();
         $_colors = array();
-	$_select_color = Mage::app()->getRequest()->getParam('color');
-	if ($_select_color === null) {
+    	$_select_color = Mage::app()->getRequest()->getParam('color');
+    	if ($_select_color === null) {
             foreach ($_filters as $_attribute) {
                 if ($_attribute->getAttributeCode() === 'color') {
                     $_block = Mage::app()->getLayout()->createBlock('catalog/layer_filter_attribute')->setLayer($_layer)->setAttributeModel($_attribute)->init();
@@ -35,10 +35,15 @@ class EcomInfinity_Mageacf_Helper_Data extends Mage_Core_Helper_Abstract {
                     }
                     break;
                 }
-	    }
+    	    }
         } else {
-	    $_colors = $_select_color;
-	}
+            $_colors = $_select_color;
+            foreach ($_colors as $_key => $_item) {
+                if (is_numeric($_item) === false) {
+                    unset($_colors[$_key]);
+                }
+            }
+    	}
         return json_encode($_colors);
     }
 
